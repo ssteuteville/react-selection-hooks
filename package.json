@@ -9,7 +9,8 @@
   "unpkg": "dist/index.umd.js",
   "scripts": {
     "build": "microbundle",
-    "dev": "microbundle watch"
+    "dev": "microbundle watch",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -23,9 +24,16 @@
   },
   "homepage": "https://github.com/ssteuteville/react-selection-hooks#readme",
   "devDependencies": {
+    "@babel/preset-env": "^7.14.8",
+    "@babel/preset-react": "^7.14.5",
+    "@babel/preset-typescript": "^7.14.5",
+    "@types/jest": "^26.0.24",
+    "babel-jest": "^27.0.6",
+    "jest": "^27.0.6",
     "microbundle": "^0.13.3",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-test-renderer": "^17.0.2"
   },
   "peerDependencies": {
     "react": "^17.0.2",

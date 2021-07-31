@@ -1,0 +1,2 @@
+import{useState as t,useCallback as r}from"react";function e(){return(e=Object.assign||function(t){for(var r=1;r<arguments.length;r++){var e=arguments[r];for(var n in e)Object.prototype.hasOwnProperty.call(e,n)&&(t[n]=e[n])}return t}).apply(this,arguments)}const n=n=>{const[o,a]=t({});return[r(t=>{const r=n(t),c=e({},o);o[r]?delete c[r]:c[r]=t,a(c)},[o]),o]};export{n as default};
+//# sourceMappingURL=index.modern.js.map

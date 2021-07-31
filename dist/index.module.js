@@ -1,0 +1,2 @@
+import{useState as r,useCallback as t}from"react";function n(){return(n=Object.assign||function(r){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var e in n)Object.prototype.hasOwnProperty.call(n,e)&&(r[e]=n[e])}return r}).apply(this,arguments)}var e=function(e){var a=r({}),o=a[0],c=a[1];return[t(function(r){var t=e(r),a=n({},o);o[t]?delete a[t]:a[t]=r,c(a)},[o]),o]};export{e as default};
+//# sourceMappingURL=index.module.js.map

@@ -1,0 +1,2 @@
+var r=require("react");function e(){return(e=Object.assign||function(r){for(var e=1;e<arguments.length;e++){var t=arguments[e];for(var n in t)Object.prototype.hasOwnProperty.call(t,n)&&(r[n]=t[n])}return r}).apply(this,arguments)}module.exports=function(t){var n=r.useState({}),a=n[0],o=n[1];return[r.useCallback(function(r){var n=t(r),u=e({},a);a[n]?delete u[n]:u[n]=r,o(u)},[a]),a]};
+//# sourceMappingURL=index.js.map

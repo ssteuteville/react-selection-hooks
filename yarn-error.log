@@ -1,5 +1,5 @@
 Arguments: 
-  /home/ssteuteville/.config/nvm/versions/node/v16.5.0/bin/node /home/ssteuteville/.config/nvm/versions/node/v16.5.0/bin/yarn publish
+  /home/ssteuteville/.config/nvm/versions/node/v16.5.0/bin/node /home/ssteuteville/.config/nvm/versions/node/v16.5.0/bin/yarn build
 
 PATH: 
   /home/ssteuteville/.config/nvm/versions/node/v16.5.0/bin:/home/ssteuteville/dev/react-selection-hooks/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/local/games:/usr/sbin:/usr/bin:/usr/games:/sbin:/bin
@@ -14,27 +14,23 @@ Platform:
   linux x64
 
 Trace: 
-  Error: canceled
-      at Interface.<anonymous> (/home/ssteuteville/.config/nvm/versions/node/v16.5.0/lib/node_modules/yarn/lib/cli.js:137023:13)
-      at Interface.emit (node:events:394:28)
-      at Interface._ttyWrite (node:readline:1081:16)
-      at ReadStream.onkeypress (node:readline:288:10)
-      at ReadStream.emit (node:events:394:28)
-      at emitKeys (node:internal/readline/utils:358:14)
-      at emitKeys.next (<anonymous>)
-      at ReadStream.onData (node:internal/readline/emitKeypressEvents:61:36)
-      at ReadStream.emit (node:events:394:28)
-      at addChunk (node:internal/streams/readable:312:12)
+  SyntaxError: /home/ssteuteville/dev/react-selection-hooks/package.json: Unexpected token } in JSON at position 707
+      at JSON.parse (<anonymous>)
+      at /home/ssteuteville/.config/nvm/versions/node/v16.5.0/lib/node_modules/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/home/ssteuteville/.config/nvm/versions/node/v16.5.0/lib/node_modules/yarn/lib/cli.js:310:30)
+      at /home/ssteuteville/.config/nvm/versions/node/v16.5.0/lib/node_modules/yarn/lib/cli.js:321:13
 
 npm manifest: 
   {
     "name": "react-selection-hooks",
-    "version": "1.0.0",
+    "version": "0.0.4",
     "description": "",
     "source": "src/index.ts",
-    "main": "dist/react-selection-hooks.js",
-    "module": "dist/react-selection-hooks.module.js",
-    "unpkg": "dist/react-selection-hooks.umd.js",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "module": "dist/index.module.js",
+    "unpkg": "dist/index.umd.js",
     "scripts": {
       "build": "microbundle",
       "dev": "microbundle watch"
@@ -52,8 +48,6 @@ npm manifest:
     "homepage": "https://github.com/ssteuteville/react-selection-hooks#readme",
     "devDependencies": {
       "microbundle": "^0.13.3",
-      "react": "^17.0.2",
-      "react-dom": "^17.0.2"
     },
     "peerDependencies": {
       "react": "^17.0.2",

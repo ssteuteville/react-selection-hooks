@@ -1,12 +1,12 @@
 {
   "name": "react-selection-hooks",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "",
-  "source": "./src/index.ts",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "module": "./dist/index.module.js",
-  "unpkg": "./dist/index.umd.js",
+  "source": "src/index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "module": "dist/index.module.js",
+  "unpkg": "dist/index.umd.js",
   "scripts": {
     "build": "microbundle",
     "dev": "microbundle watch",

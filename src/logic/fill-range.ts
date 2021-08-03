@@ -1,11 +1,11 @@
-import { KeyGetter, SelectionEvent, SelectionState } from "..";
+import { KeyGetter, SelectionState } from "..";
 import findLastIndex from "../utils/find-last-index";
 
 const fillRange = <TItem>(
+  selectedItem: TItem,
   items: TItem[],
   selection: SelectionState<TItem>,
-  event: SelectionEvent<TItem>,
-  getKey: KeyGetter<TItem> | undefined = undefined
+  getKey: KeyGetter<TItem>
 ): TItem[] => {
   const firstSelectedItemIndex = items.findIndex(
     (item) => selection[getKey(item)] != null
@@ -15,17 +15,16 @@ const fillRange = <TItem>(
       ? -1
       : findLastIndex(items, (item) => selection[getKey(item)] != null);
   const itemIndex = items.findIndex(
-    (item) => getKey(item) == getKey(event.item)
+    (item) => getKey(item) == getKey(selectedItem)
   );
-  if (event.mouseEvent.shiftKey) {
-    if (firstSelectedItemIndex < itemIndex) {
-      return items.slice(Math.max(firstSelectedItemIndex, 0), itemIndex);
-    } else {
-      return items.slice(
-        firstSelectedItemIndex,
-        Math.min(items.length - 1, lastSelectedItemIndex)
-      );
-    }
+
+  if (firstSelectedItemIndex < itemIndex) {
+    return items.slice(Math.max(firstSelectedItemIndex, 0), itemIndex + 1);
+  } else {
+    return items.slice(
+      itemIndex,
+      Math.min(items.length - 1, lastSelectedItemIndex) + 1
+    );
   }
 };
 

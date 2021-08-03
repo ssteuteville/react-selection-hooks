@@ -1,4 +1,5 @@
 import { useCallback, useState, useMemo } from "react";
+import fillRange from "./logic/fill-range";
 
 export interface SelectionState<TItem> {
   [key: string]: TItem;
@@ -42,6 +43,7 @@ export interface SelectionEvent<TItem> {
 // }
 
 const useSelection = <TItem>(
+  items: TItem[],
   getKey: KeyGetter<TItem>
 ): UseSelectionResult<TItem> => {
   const [selectedItems, setSelection] = useState<TItem[]>([]);
@@ -54,22 +56,26 @@ const useSelection = <TItem>(
     [selectedItems]
   );
 
-  const onSelectToggle = useCallback(
-    (item: TItem) => {
+  const onSelectionEvent = useCallback(
+    (item: TItem, event: MouseEvent | undefined = undefined) => {
       const key = getKey(item);
-      const newState = [...selectedItems];
-      if (selection[key]) {
-        setSelection(selectedItems.filter((item) => getKey(item) !== key));
-      } else {
-        setSelection(selectedItems.concat(item));
-      }
+      if (!event || (!event.ctrlKey && !event.shiftKey)) {
+        const newState = [...selectedItems];
+        if (selection[key]) {
+          setSelection(selectedItems.filter((item) => getKey(item) !== key));
+        } else {
+          setSelection(selectedItems.concat(item));
+        }
 
-      setSelection(newState);
+        setSelection(newState);
+      } else if (event.shiftKey) {
+        setSelection(fillRange(item, items, selection, getKey));
+      }
     },
-    [selection]
+    [selection, items, getKey]
   );
 
-  return [onSelectToggle, selection];
+  return [onSelectionEvent, selection];
 };
 
 export default useSelection;

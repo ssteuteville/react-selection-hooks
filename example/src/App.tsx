@@ -8,7 +8,7 @@ interface Item {
 const items: Item[] = [{ key: 'Item 1' }, { key: 'Item 2' }, { key: 'Item3' }, { key: 'Item4' }];
 
 function App() {
-  const [onToggle, selection] = useSelection<Item>(item => item.key)
+  const [onToggle, selection] = useSelection<Item>(items, (item: Item) => item.key)
   return (
     <div className="App">
       {

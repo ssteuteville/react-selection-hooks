@@ -18,7 +18,7 @@ export interface UseSelectionOptions<TItem> {
 }
 
 export interface SelectionEvent<TItem> {
-  mouseEvent?: MouseEvent;
+  mouseEvent?: MouseEvent; // todo use react type here
   item: TItem;
 }
 

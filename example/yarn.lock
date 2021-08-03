@@ -9077,10 +9077,10 @@ react-scripts@4.0.3:
   optionalDependencies:
     fsevents "^2.1.3"
 
-react-selection-hooks@0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/react-selection-hooks/-/react-selection-hooks-0.0.5.tgz#1b9f381929da99fb0b77b70168ee8d60300251eb"
-  integrity sha512-L77eQEN0frgTyHdrKfz5KusJSZ1+Oq2MT5rSmvv2QfzRVozGhsMm4vC59gQFMCVlBpNQaltBX5NFcjCOvs+qaQ==
+react-selection-hooks@0.0.10:
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/react-selection-hooks/-/react-selection-hooks-0.0.10.tgz#09c6ca35d85580e54090591470b852ab3650624a"
+  integrity sha512-LGceH9AP1G9gwSTsvsa9K+cPfbjW93xSxUwRmgJ3COljaazR8ETMwtaScqcBBm7US8wkBvvk0eyF0O4ZaeBlHw==
 
 react@^17.0.2:
   version "17.0.2"

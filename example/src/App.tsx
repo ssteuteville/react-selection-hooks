@@ -13,7 +13,7 @@ function App() {
     <div className="App">
       {
         items.map(i => (
-            <button key={i.key} onClick={() => onToggle(i)}>
+            <button key={i.key} onClick={(e) => onToggle(i, e)}>
               {`${i.key}${selection[i.key] ? ' - selected' : ''}`}
             </button>
         ))

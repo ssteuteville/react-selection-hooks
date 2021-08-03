@@ -9,7 +9,7 @@ export interface SelectionState<TItem> {
 export type KeyGetter<TItem> = (item: TItem) => string | number;
 
 export type UseSelectionResult<TItem> = [
-  (item: TItem) => void,
+  (item: TItem, event?: MouseEvent) => void,
   SelectionState<TItem>
 ];
 
@@ -60,14 +60,11 @@ const useSelection = <TItem>(
     (item: TItem, event: MouseEvent | undefined = undefined) => {
       const key = getKey(item);
       if (!event || (!event.ctrlKey && !event.shiftKey)) {
-        const newState = [...selectedItems];
         if (selection[key]) {
           setSelection(selectedItems.filter((item) => getKey(item) !== key));
         } else {
           setSelection(selectedItems.concat(item));
         }
-
-        setSelection(newState);
       } else if (event.shiftKey) {
         setSelection(fillRange(item, items, selection, getKey));
       }

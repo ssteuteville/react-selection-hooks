@@ -13,7 +13,7 @@ export interface UseSelectionApi<TItem> {
   clearSelection: () => void;
   appendToSelection: (item: TItem) => void;
   removeFromSelection: (item: TItem) => void;
-  isSelected: (item: TItem) => void;
+  isSelected: (item: TItem) => boolean;
   toggleSelection: (item: TItem) => void;
   selectedItems: TItem[];
 }

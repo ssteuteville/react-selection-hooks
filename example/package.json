@@ -6,6 +6,7 @@
   "dependencies": {
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
+    "@material-ui/styles": "^4.11.4",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -13,10 +14,14 @@
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "csstype": "^3.0.8",
+    "highlight.js": "^11.2.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-lowlight": "^2.0.0",
     "react-scripts": "4.0.3",
-    "react-selection-hooks": "0.0.15",
+    "react-selection-hooks": "0.0.16",
+    "react-syntax-highlighter": "^15.4.4",
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
   },
@@ -47,6 +52,8 @@
     ]
   },
   "devDependencies": {
+    "@types/highlight.js": "^10.1.0",
+    "@types/react-syntax-highlighter": "^13.5.2",
     "gh-pages": "^3.2.3"
   }
 }

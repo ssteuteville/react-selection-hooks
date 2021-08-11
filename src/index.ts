@@ -1,4 +1,4 @@
-import { useCallback, useState, useMemo } from "react";
+import { useCallback, useState, useMemo, MouseEvent } from "react";
 import fillRange from "./logic/fill-range";
 
 export interface SelectionState<TItem> {

@@ -12,7 +12,7 @@ interface Item {
 const items: Item[] = Array.from({ length: 20 }).map((_, i) => ({ key: `Item${i}` }));
 
 function App() {
-  const { onSelect, selectionState } = useSelection<Item>(items, (item: Item) => item.key)
+  const { onSelect, isSelected } = useSelection<Item>(items, (item: Item) => item.key)
   return (
     <div className="App">
       <Container>
@@ -38,7 +38,7 @@ function App() {
               items.map(i => (
                 <ListItem
                   button
-                  selected={!!selectionState[i.key]}
+                  selected={isSelected(i)}
                   key={i.key}
                   onClick={e => onSelect(i, e)}
                   divider

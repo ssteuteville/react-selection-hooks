@@ -9,7 +9,13 @@ export type KeyGetter<TItem> = (item: TItem) => string | number;
 
 export interface UseSelectionApi<TItem> {
   onSelect: (item: TItem, event?: MouseEvent) => void;
-  selectionState: SelectionState<TItem>;
+  selectionCount: number;
+  clearSelection: () => void;
+  appendToSelection: (item: TItem) => void;
+  removeFromSelection: (item: TItem) => void;
+  isSelected: (item: TItem) => void;
+  toggleSelection: (item: TItem) => void;
+  selectedItems: TItem[];
 }
 export interface UseSelectionOptions<TItem> {
   getKey: KeyGetter<TItem>;
@@ -30,6 +36,7 @@ const useSelection = <TItem>(
     () => items.findIndex((i) => getKey(i) === pivotKey),
     [items, getKey, pivotKey]
   );
+
   const selection: SelectionState<TItem> = useMemo(
     () =>
       Object.assign(
@@ -39,10 +46,46 @@ const useSelection = <TItem>(
     [selectedItems]
   );
 
+  const isSelected = useCallback(
+    (item: TItem) => !!selection[getKey(item)],
+    [getKey, selection]
+  );
+
+  const appendToSelection = useCallback(
+    (item: TItem) => {
+      if (!isSelected(item)) {
+        setSelection((current) => current.concat(item));
+      }
+    },
+    [isSelected]
+  );
+
+  const removeFromSelection = useCallback(
+    (item: TItem) => {
+      if (!isSelected(item)) return;
+
+      const key = getKey(item);
+      setSelection((current) =>
+        current.filter((filterItem) => getKey(filterItem) !== key)
+      );
+    },
+    [isSelected, getKey]
+  );
+
+  const toggleSelection = useCallback(
+    (item: TItem) => {
+      if (isSelected(item)) {
+        removeFromSelection(item);
+      } else {
+        appendToSelection(item);
+      }
+    },
+    [isSelected, appendToSelection, removeFromSelection]
+  );
+
   const onSelectionEvent = useCallback(
     (item: TItem, event: MouseEvent | undefined = undefined) => {
       const key = getKey(item);
-      const isSelected = !!selection[key];
       const itemIndex = items.findIndex((i) => getKey(i) === getKey(item));
       if (pivotKey == null || !event || (!event.ctrlKey && !event.shiftKey)) {
         setSelection([item]);
@@ -51,23 +94,37 @@ const useSelection = <TItem>(
         const startIndex = Math.min(itemIndex, pivotIndex);
         const endIndex = Math.max(itemIndex, pivotIndex);
         setSelection(items.slice(startIndex, endIndex + 1));
-      } else if (event.ctrlKey && isSelected) {
-        setSelection(selectedItems.filter((item) => getKey(item) !== key));
-        setPivotKey(key);
-      } else {
-        setSelection(selectedItems.concat(item));
-        setPivotKey(key);
+      } else if (event.ctrlKey) {
+        toggleSelection(item);
       }
     },
-    [selection, items, getKey, pivotKey]
+    [items, getKey, pivotKey, toggleSelection]
   );
+
+  const clearSelection = useCallback(() => {
+    setSelection([]);
+  }, []);
 
   return useMemo(
     () => ({
+      appendToSelection,
+      removeFromSelection,
+      toggleSelection,
+      isSelected,
       onSelect: onSelectionEvent,
-      selectionState: selection,
+      selectedItems,
+      selectionCount: selectedItems.length,
+      clearSelection,
     }),
-    [selection, onSelectionEvent]
+    [
+      clearSelection,
+      isSelected,
+      selectedItems,
+      appendToSelection,
+      removeFromSelection,
+      toggleSelection,
+      onSelectionEvent,
+    ]
   );
 };
 

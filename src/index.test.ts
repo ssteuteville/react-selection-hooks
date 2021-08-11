@@ -15,7 +15,7 @@ describe("api", () => {
   it("default state", () => {
     const { result } = renderHook(() => useSelection(mockItems, getKey));
     expect(result.current.onSelect).toEqual(expect.any(Function));
-    expect(result.current.selectionState).toEqual({});
+    expect(result.current.selectedItems).toEqual([]);
   });
 
   describe("onSelect", () => {
@@ -29,8 +29,10 @@ describe("api", () => {
           result.current.onSelect(selectedItem);
         });
 
-        expect(Object.keys(result.current.selectionState).length).toBe(1);
-        expect(!!result.current.selectionState[selectedItem.key]).toBe(true);
+        expect(result.current.selectedItems.length).toBe(1);
+        expect(result.current.selectedItems.indexOf(selectedItem) > -1).toBe(
+          true
+        );
       }
     );
 

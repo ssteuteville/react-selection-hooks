@@ -1,6 +1,6 @@
 {
   "name": "react-selection-hooks",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "",
   "source": "src/index.ts",
   "main": "dist/index.js",

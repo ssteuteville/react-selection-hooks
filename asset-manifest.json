@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/react-selection-hooks/static/css/main.8c8b27cf.chunk.css",
-    "main.js": "/react-selection-hooks/static/js/main.9ed34822.chunk.js",
-    "main.js.map": "/react-selection-hooks/static/js/main.9ed34822.chunk.js.map",
-    "runtime-main.js": "/react-selection-hooks/static/js/runtime-main.68a3e132.js",
-    "runtime-main.js.map": "/react-selection-hooks/static/js/runtime-main.68a3e132.js.map",
-    "static/js/2.1f02faf3.chunk.js": "/react-selection-hooks/static/js/2.1f02faf3.chunk.js",
-    "static/js/2.1f02faf3.chunk.js.map": "/react-selection-hooks/static/js/2.1f02faf3.chunk.js.map",
-    "static/js/3.e45d219c.chunk.js": "/react-selection-hooks/static/js/3.e45d219c.chunk.js",
-    "static/js/3.e45d219c.chunk.js.map": "/react-selection-hooks/static/js/3.e45d219c.chunk.js.map",
+    "main.css": "/react-selection-hooks/static/css/main.6dea0f05.chunk.css",
+    "main.js": "/react-selection-hooks/static/js/main.10db64b3.chunk.js",
+    "main.js.map": "/react-selection-hooks/static/js/main.10db64b3.chunk.js.map",
+    "runtime-main.js": "/react-selection-hooks/static/js/runtime-main.3ff11543.js",
+    "runtime-main.js.map": "/react-selection-hooks/static/js/runtime-main.3ff11543.js.map",
+    "static/js/2.a61bb50c.chunk.js": "/react-selection-hooks/static/js/2.a61bb50c.chunk.js",
+    "static/js/2.a61bb50c.chunk.js.map": "/react-selection-hooks/static/js/2.a61bb50c.chunk.js.map",
+    "static/js/3.a250c7ed.chunk.js": "/react-selection-hooks/static/js/3.a250c7ed.chunk.js",
+    "static/js/3.a250c7ed.chunk.js.map": "/react-selection-hooks/static/js/3.a250c7ed.chunk.js.map",
     "index.html": "/react-selection-hooks/index.html",
-    "static/css/main.8c8b27cf.chunk.css.map": "/react-selection-hooks/static/css/main.8c8b27cf.chunk.css.map",
-    "static/js/2.1f02faf3.chunk.js.LICENSE.txt": "/react-selection-hooks/static/js/2.1f02faf3.chunk.js.LICENSE.txt"
+    "static/css/main.6dea0f05.chunk.css.map": "/react-selection-hooks/static/css/main.6dea0f05.chunk.css.map",
+    "static/js/2.a61bb50c.chunk.js.LICENSE.txt": "/react-selection-hooks/static/js/2.a61bb50c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.68a3e132.js",
-    "static/js/2.1f02faf3.chunk.js",
-    "static/css/main.8c8b27cf.chunk.css",
-    "static/js/main.9ed34822.chunk.js"
+    "static/js/runtime-main.3ff11543.js",
+    "static/js/2.a61bb50c.chunk.js",
+    "static/css/main.6dea0f05.chunk.css",
+    "static/js/main.10db64b3.chunk.js"
   ]
 }

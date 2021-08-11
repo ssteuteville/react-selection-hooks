@@ -9315,10 +9315,10 @@ react-scripts@4.0.3:
   optionalDependencies:
     fsevents "^2.1.3"
 
-react-selection-hooks@0.0.13:
-  version "0.0.13"
-  resolved "https://registry.yarnpkg.com/react-selection-hooks/-/react-selection-hooks-0.0.13.tgz#37c1e3cdf16a74c783592a7c2e4a04481b5648c6"
-  integrity sha512-x1cINbih4z9gO4mXCGFG12bBPkltZVCetlFKc8x6d4Niqq+Mw7ey4XDuYtZ/jBjNTlFAkJYMYqFvYGQkl0N15A==
+react-selection-hooks@0.0.14:
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/react-selection-hooks/-/react-selection-hooks-0.0.14.tgz#3fbfa6a849427dcbdb594fa4a98dd46946507f55"
+  integrity sha512-nsi/qHnWQd3vj/Nis470luiFINPeOE6WjSPEvLuJ6eUf2UImc0eXM1ew3zgaKebwhX3dUBjRfdEqglUEf8x58A==
 
 react-transition-group@^4.4.0:
   version "4.4.2"

@@ -12,7 +12,7 @@ interface Item {
 const items: Item[] = Array.from({ length: 20 }).map((_, i) => ({ key: `Item${i}` }));
 
 function App() {
-  const [onSelect, selection] = useSelection<Item>(items, (item: Item) => item.key)
+  const { onSelect, selectionState } = useSelection<Item>(items, (item: Item) => item.key)
   return (
     <div className="App">
       <Container>
@@ -20,10 +20,13 @@ function App() {
           react-selection-hooks
         </Typography>
         <Typography variant="body1">
-          Regular click to add one item to selection
+          Regular click to selection a single item
         </Typography>
         <Typography variant="body1">
-          Shift click to add a range of items to selection
+          Shift click to add a range of items to selection using previous pivot point
+        </Typography>
+        <Typography variant="body1">
+          Ctrl click to add/remove an item from the current selection
         </Typography>
         <Paper variant="outlined">
           <Box paddingLeft={2} paddingRight={2}>
@@ -35,7 +38,7 @@ function App() {
               items.map(i => (
                 <ListItem
                   button
-                  selected={!!selection[i.key]}
+                  selected={!!selectionState[i.key]}
                   key={i.key}
                   onClick={e => onSelect(i, e)}
                   divider

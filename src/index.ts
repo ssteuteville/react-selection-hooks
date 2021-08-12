@@ -95,6 +95,7 @@ const useSelection = <TItem>(
         const endIndex = Math.max(itemIndex, pivotIndex);
         setSelection(items.slice(startIndex, endIndex + 1));
       } else if (event.ctrlKey) {
+        setPivotKey(key);
         toggleSelection(item);
       }
     },

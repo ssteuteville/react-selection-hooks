@@ -5,3 +5,7 @@ yarn-error.log
 dist
 
 build/
+
+.idea
+
+yarn-error.log

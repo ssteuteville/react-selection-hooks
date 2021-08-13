@@ -1,6 +1,6 @@
 {
   "name": "react-selection-hooks",
-  "version": "0.0.19",
+  "version": "0.0.24",
   "description": "",
   "source": "src/index.ts",
   "main": "dist/index.js",
@@ -10,7 +10,10 @@
   "files": [
     "dist/index.d.ts",
     "dist/index.module.js",
-    "dist/index.umd.js"
+    "dist/index.umd.js",
+    "dist/types.d.ts",
+    "dist/useSelection.d.ts",
+    "dist/reducers/index.d.ts"
   ],
   "scripts": {
     "build": "microbundle",

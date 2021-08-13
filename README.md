@@ -49,7 +49,7 @@ const MyComponent: React.FC = () => {
     removeFromSelection,
     // toggle whether an item is selected or not
     toggleSelection
-  } = useSelection(items, getKey);
+  } = useSelection(items, { getKey });
 
   return (
     <ul>

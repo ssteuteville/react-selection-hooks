@@ -8,9 +8,12 @@ import { Container, Typography, Paper, Box, ListSubheader } from '@material-ui/c
 interface Item {
     key: string;
 }
+const getKey = (item: Item) => item.key;
 const items: Item[] = Array.from({ length: 20 }).map((_, i) => ({ key: `Item${i}` }));
 const BasicExample = () => {
-    const { onSelect, isSelected } = useSelection<Item>(items, (item: Item) => item.key)
+    const { onSelect, isSelected } = useSelection<Item>(items, {
+      getKey
+    });
     return (
     <Container>
         <Typography variant="h2">

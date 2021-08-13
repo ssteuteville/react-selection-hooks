@@ -1,41 +1,21 @@
-import { useCallback, useState, useMemo, MouseEvent } from "react";
-
-export interface SelectionState<TItem> {
-  [key: string]: TItem;
-  [key: number]: TItem;
-}
-
-export type KeyGetter<TItem> = (item: TItem) => string | number;
-
-export interface UseSelectionApi<TItem> {
-  onSelect: (item: TItem, event?: MouseEvent) => void;
-  selectionCount: number;
-  clearSelection: () => void;
-  appendToSelection: (item: TItem) => void;
-  removeFromSelection: (item: TItem) => void;
-  isSelected: (item: TItem) => boolean;
-  toggleSelection: (item: TItem) => void;
-  selectedItems: TItem[];
-}
-export interface UseSelectionOptions<TItem> {
-  getKey: KeyGetter<TItem>;
-}
-
-export interface SelectionEvent<TItem> {
-  mouseEvent?: MouseEvent;
-  item: TItem;
-}
+import { useCallback, useMemo, MouseEvent, useReducer } from "react";
+import chromeosReducer from "./reducers/chromeos-reducer";
+import {
+  UseSelectionApi,
+  SelectionState,
+  UseSelectionOptions,
+  UseSelectionDefaultActions,
+} from "./types";
 
 const useSelection = <TItem>(
   items: TItem[],
-  getKey: KeyGetter<TItem>
+  {
+    getKey,
+    reducer = chromeosReducer,
+    defaultState = { selectedItems: [] },
+  }: UseSelectionOptions<TItem>
 ): UseSelectionApi<TItem> => {
-  const [selectedItems, setSelection] = useState<TItem[]>([]);
-  const [pivotKey, setPivotKey] = useState<string | number>();
-  const pivotIndex = useMemo(
-    () => items.findIndex((i) => getKey(i) === pivotKey),
-    [items, getKey, pivotKey]
-  );
+  const [{ selectedItems }, dispatch] = useReducer(reducer, defaultState);
 
   const selection: SelectionState<TItem> = useMemo(
     () =>
@@ -53,57 +33,59 @@ const useSelection = <TItem>(
 
   const appendToSelection = useCallback(
     (item: TItem) => {
-      if (!isSelected(item)) {
-        setSelection((current) => current.concat(item));
-      }
+      dispatch({
+        type: UseSelectionDefaultActions.append,
+        isSelected,
+        item,
+        getKey,
+        items,
+      });
     },
-    [isSelected]
+    [isSelected, getKey, items]
   );
 
   const removeFromSelection = useCallback(
     (item: TItem) => {
-      if (!isSelected(item)) return;
-
-      const key = getKey(item);
-      setSelection((current) =>
-        current.filter((filterItem) => getKey(filterItem) !== key)
-      );
+      dispatch({
+        type: UseSelectionDefaultActions.remove,
+        isSelected,
+        item,
+        getKey,
+        items,
+      });
     },
-    [isSelected, getKey]
+    [isSelected, getKey, items]
   );
 
   const toggleSelection = useCallback(
     (item: TItem) => {
-      if (isSelected(item)) {
-        removeFromSelection(item);
-      } else {
-        appendToSelection(item);
-      }
+      dispatch({
+        type: UseSelectionDefaultActions.toggle,
+        isSelected,
+        item,
+        getKey,
+        items,
+      });
     },
-    [isSelected, appendToSelection, removeFromSelection]
+    [isSelected, getKey, items]
   );
 
   const onSelectionEvent = useCallback(
     (item: TItem, event: MouseEvent | undefined = undefined) => {
-      const key = getKey(item);
-      const itemIndex = items.findIndex((i) => getKey(i) === getKey(item));
-      if (pivotKey == null || !event || (!event.ctrlKey && !event.shiftKey)) {
-        setSelection([item]);
-        setPivotKey(key);
-      } else if (event.shiftKey) {
-        const startIndex = Math.min(itemIndex, pivotIndex);
-        const endIndex = Math.max(itemIndex, pivotIndex);
-        setSelection(items.slice(startIndex, endIndex + 1));
-      } else if (event.ctrlKey) {
-        setPivotKey(key);
-        toggleSelection(item);
-      }
+      dispatch({
+        type: UseSelectionDefaultActions.mouse,
+        getKey,
+        isSelected,
+        item,
+        mouseEvent: event,
+        items,
+      });
     },
-    [items, getKey, pivotKey, toggleSelection]
+    [getKey, isSelected, items]
   );
 
   const clearSelection = useCallback(() => {
-    setSelection([]);
+    dispatch({ type: UseSelectionDefaultActions.clear });
   }, []);
 
   return useMemo(

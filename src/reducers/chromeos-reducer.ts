@@ -66,7 +66,7 @@ const chromeosReducer = <TItem>(
       };
     }
     case UseSelectionDefaultActions.mouse: {
-      const pivotIndex = state.selectedItems.findIndex(
+      const pivotIndex = action.items.findIndex(
         (i) => action.getKey(i) === state.pivotKey
       );
       const { mouseEvent } = action;

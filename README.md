@@ -21,6 +21,19 @@ Our operating systems use click modifiers to make our lives easier when selectin
 ## Demo
 https://ssteuteville.github.io/react-selection-hooks/
 
+## Features
+- Easy to use Operating System Selection functionality
+- Selection State management and utilities
+- Chromeos Mode (default)
+- Customizability API (create your own state reducer)
+- Built-in typescript support
+
+## Coming Soon
+- Macos Mode
+- Windows Mode
+- Mobile Features
+- Better Documentation
+
 ## Usage
 ```ts
 import React from 'react';

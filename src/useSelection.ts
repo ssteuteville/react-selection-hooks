@@ -1,5 +1,5 @@
 import { useCallback, useMemo, MouseEvent, useReducer } from "react";
-import chromeosReducer from "./reducers/chromeos-reducer";
+import pivotReducer from "./reducers/pivot-reducer";
 import {
   UseSelectionApi,
   SelectionState,
@@ -11,7 +11,7 @@ const useSelection = <TItem>(
   items: TItem[],
   {
     getKey,
-    reducer = chromeosReducer,
+    reducer = pivotReducer,
     defaultState = { selectedItems: [] },
   }: UseSelectionOptions<TItem>
 ): UseSelectionApi<TItem> => {

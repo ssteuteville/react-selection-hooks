@@ -6,7 +6,15 @@
 ![npmuserstars](https://img.shields.io/github/stars/ssteuteville?label=ssteutevile&style=social)
 
 # react-selection-hooks
-Our operating systems use click modifiers to make our lives easier when selecting things and so should our react apps! This project aims to build abstractions around managing a selection of items from an array. The project's initial goal is to build a few different sets of behaviors that are based on how popular operating systems handle mouse modifiers and to expose an api to help manage and use the selection throughout your UI. From there, a customization api will be added to allow fine-tuning or completely overriding how the selection behaviors work.
+Our operating systems use click modifiers to make our lives easier when selecting things and so should our react apps! This project aims to build abstractions around managing a selection of items from an array.
+
+## Goals
+- Easy to use, no configuration, and useful default click modifiers
+- Customizable click handling (wip)
+- API for handling most common selection state actions (clear, append, remove, etc)
+- Mobile utilities (not started)
+- High unit test coverage (not started)
+- Ability to maintain selections while filtering (not started)
 
 ## Installation
 ### yarn
@@ -24,7 +32,7 @@ https://ssteuteville.github.io/react-selection-hooks/
 ## Features
 - Easy to use Operating System Like Selection functionality
 - Selection State management and utilities
-- Chromeos Mode (default)
+- Pivot Mode (default, matches popular operating systems)
 - Customizability API (create your own state reducer)
 - Built-in typescript support
 
@@ -56,6 +64,7 @@ const MyComponent: React.FC = () => {
     removeFromSelection,
     // toggle whether an item is selected or not
     toggleSelection
+    // useSelection has optional `reducer` and `defaultState` parameters
   } = useSelection(items, { getKey });
 
   return (
@@ -77,10 +86,11 @@ const MyComponent: React.FC = () => {
 ```
 
 ## Coming Soon
-- Macos Mode
-- Windows Mode
-- Mobile Features
+- More click handling modes
+- A base reducer to use for building custom reducers
+- Mobile features
 - Better Documentation
+- Better test coverage
 
 ## Contributions
 Currently just asking for ideas for a long-term api and opinions on usefulness/interest

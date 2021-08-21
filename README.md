@@ -86,7 +86,7 @@ const MyComponent: React.FC = () => {
 ```
 
 ## Coming Soon
-- More click handling modes
+- More click handling modes (currently defaults to windows/chromeos, macos will be next)
 - A base reducer to use for building custom reducers
 - Mobile features
 - Better Documentation

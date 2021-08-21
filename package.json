@@ -27,8 +27,8 @@
     "url": "git+https://github.com/ssteuteville/react-selection-hooks.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Shane Steuteville",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ssteuteville/react-selection-hooks/issues"
   },

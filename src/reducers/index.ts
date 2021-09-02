@@ -1,1 +1,1 @@
-export { default as chromeosReducer } from './chromeos-reducer';
+export { default as chromeosReducer } from "./chromeos-reducer";

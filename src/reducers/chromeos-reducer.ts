@@ -9,6 +9,8 @@ type ChromeosState<TITem> = SelectionApiState<TITem> & {
   pivotKey?: string | number;
 };
 
+const isMac = window.navigator.platform.toUpperCase().indexOf("MAC") >= 0;
+
 const remove = <TItem>(
   state: ChromeosState<TItem>,
   action: ReducerAction<TItem, UseSelectionDefaultActions.remove>
@@ -72,10 +74,12 @@ const chromeosReducer = <TItem>(
       const { mouseEvent } = action;
       const key = action.getKey(action.item);
       const itemIndex = action.items.findIndex((i) => action.getKey(i) === key);
+      const isToggleModifierPressed =
+        (isMac && mouseEvent.metaKey) || (!isMac && mouseEvent.ctrlKey);
       if (
         state.pivotKey == null ||
         !mouseEvent ||
-        (!mouseEvent.ctrlKey && !mouseEvent.shiftKey)
+        (!isToggleModifierPressed && !mouseEvent.shiftKey)
       ) {
         return {
           ...state,
@@ -89,7 +93,7 @@ const chromeosReducer = <TItem>(
           ...state,
           selectedItems: action.items.slice(startIndex, endIndex + 1),
         };
-      } else if (mouseEvent.ctrlKey) {
+      } else if (isToggleModifierPressed) {
         return {
           ...toggle(state, {
             ...action,

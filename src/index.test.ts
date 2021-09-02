@@ -1,5 +1,6 @@
 import { renderHook, act } from "@testing-library/react-hooks";
 import useSelection from ".";
+import { UseSelectionOptions } from "./types";
 interface TestItem {
   key: string;
 }
@@ -12,8 +13,20 @@ describe("api", () => {
   }));
   const getKey = (item: TestItem): string => item.key;
 
+  const render = (
+    items: TestItem[] = mockItems,
+    options: Partial<UseSelectionOptions<TestItem>> = {}
+  ) => {
+    return renderHook(() =>
+      useSelection(items, {
+        getKey,
+        ...options,
+      })
+    );
+  };
+
   it("default state", () => {
-    const { result } = renderHook(() => useSelection(mockItems, getKey));
+    const { result } = render();
     expect(result.current.onSelect).toEqual(expect.any(Function));
     expect(result.current.selectedItems).toEqual([]);
   });
@@ -22,7 +35,7 @@ describe("api", () => {
     it.each([[0], [5], [NUM_ITEMS - 1]])(
       `first selection index = %s of ${NUM_ITEMS}`,
       (itemIndex: number) => {
-        const { result } = renderHook(() => useSelection(mockItems, getKey));
+        const { result } = render();
         const selectedItem = mockItems[itemIndex];
 
         act(() => {

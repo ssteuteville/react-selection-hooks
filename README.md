@@ -44,6 +44,7 @@ import useSelection from 'react-selection-hooks';
 const items = Array.from({ length: 10 })
   .map((_, i) => ({ key: `Key ${i}` }));
 
+// for best performance this should be memoized or const
 const getKey = item => item.key;
 
 const MyComponent: React.FC = () => {
@@ -63,7 +64,10 @@ const MyComponent: React.FC = () => {
     // remove one item from selection
     removeFromSelection,
     // toggle whether an item is selected or not
-    toggleSelection
+    toggleSelection,
+    // the ...other properites would be determined by the reducer
+    // passed into the optional reducer prop
+    state: { selectedItems, ...other },
     // useSelection has optional `reducer` and `defaultState` parameters
   } = useSelection(items, { getKey });
 

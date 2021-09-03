@@ -1,21 +1,27 @@
 import { useCallback, useMemo, MouseEvent, useReducer } from "react";
-import chromeosReducer from "./reducers/chromeos-reducer";
+import pivotReducer from "./reducers/pivot-reducer";
 import {
   UseSelectionApi,
   SelectionState,
   UseSelectionOptions,
   UseSelectionDefaultActions,
+  SelectionApiState,
+  PivotReducerState,
 } from "./types";
 
-const useSelection = <TItem>(
+const useSelection = <
+  TItem,
+  TState extends SelectionApiState<TItem> = PivotReducerState<TItem>
+>(
   items: TItem[],
   {
     getKey,
-    reducer = chromeosReducer,
+    reducer = pivotReducer,
     defaultState = { selectedItems: [] },
   }: UseSelectionOptions<TItem>
-): UseSelectionApi<TItem> => {
-  const [{ selectedItems }, dispatch] = useReducer(reducer, defaultState);
+): UseSelectionApi<TItem, TState> => {
+  const [state, dispatch] = useReducer(reducer, defaultState);
+  const { selectedItems } = state;
 
   const selection: SelectionState<TItem> = useMemo(
     () =>
@@ -98,6 +104,7 @@ const useSelection = <TItem>(
       selectedItems,
       selectionCount: selectedItems.length,
       clearSelection,
+      state: state as TState,
     }),
     [
       clearSelection,
@@ -107,6 +114,7 @@ const useSelection = <TItem>(
       removeFromSelection,
       toggleSelection,
       onSelectionEvent,
+      state,
     ]
   );
 };

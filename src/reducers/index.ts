@@ -1,1 +1,2 @@
-export { default as chromeosReducer } from "./chromeos-reducer";
+export { default as pivotReducer } from "./pivot-reducer";
+export { default as baseReducer } from "./base-reducer";

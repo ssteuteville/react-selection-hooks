@@ -1,18 +1,27 @@
-export default `
+const example = `
 import React from 'react';
-import useSelection from "react-selection-hooks";
+import useSelection, { PivotReducerState } from "react-selection-hooks";
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import { Container, Typography, Paper, Box, ListSubheader } from '@material-ui/core';
+import { Container, Typography, Paper, Box, ListSubheader, makeStyles } from '@material-ui/core';
+
+const useStyles = makeStyles((theme) => ({
+  pivot: {
+    border: \`1px solid \${theme.palette.primary.main}\`
+  }
+}))
 
 interface Item {
     key: string;
 }
+
+// for best performance getKey should be wrapped in \`useCallback\` or declared out of the render body
 const getKey = (item: Item) => item.key;
 const items: Item[] = Array.from({ length: 20 }).map((_, i) => ({ key: \`Item\${i}\` }));
 const BasicExample = () => {
-    const { onSelect, isSelected } = useSelection<Item>(items, {
+    const classes = useStyles();
+    const { onSelect, isSelected, state } = useSelection<Item, PivotReducerState<Item>>(items, {
       getKey
     });
     return (
@@ -43,6 +52,7 @@ const BasicExample = () => {
                   key={i.key}
                   onClick={e => onSelect(i, e)}
                   divider
+                  className={state.pivotKey === i.key ? classes.pivot : undefined}
                 >
                   <ListItemText primary={i.key} />
                 </ListItem>
@@ -57,3 +67,4 @@ const BasicExample = () => {
 
 export default BasicExample;
 `
+export default example;

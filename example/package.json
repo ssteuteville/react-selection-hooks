@@ -20,7 +20,7 @@
     "react-dom": "^17.0.2",
     "react-lowlight": "^2.0.0",
     "react-scripts": "4.0.3",
-    "react-selection-hooks": "0.0.24",
+    "react-selection-hooks": "0.0.27",
     "react-syntax-highlighter": "^15.4.4",
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"

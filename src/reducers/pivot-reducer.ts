@@ -3,6 +3,7 @@ import {
   UseSelectionApiReducerActions,
   UseSelectionDefaultActions,
 } from "../types";
+import isMacOs from "../utils/is-mac-os";
 import baseReducer from "./base-reducer";
 
 type PivotReducerState<TITem> = SelectionApiState<TITem> & {
@@ -21,10 +22,13 @@ const pivotReducer = <TItem>(
       const { mouseEvent } = action;
       const key = action.getKey(action.item);
       const itemIndex = action.items.findIndex((i) => action.getKey(i) === key);
+      const toggleModifer =
+        mouseEvent && (isMacOs() ? mouseEvent.metaKey : mouseEvent.ctrlKey);
+
       if (
         state.pivotKey == null ||
         !mouseEvent ||
-        (!mouseEvent.ctrlKey && !mouseEvent.shiftKey)
+        (!toggleModifer && !mouseEvent.shiftKey)
       ) {
         return {
           ...state,
@@ -38,7 +42,7 @@ const pivotReducer = <TItem>(
           ...state,
           selectedItems: action.items.slice(startIndex, endIndex + 1),
         };
-      } else if (mouseEvent.ctrlKey) {
+      } else if (toggleModifer) {
         return {
           ...baseReducer(state, {
             ...action,

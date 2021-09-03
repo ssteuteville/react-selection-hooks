@@ -6,7 +6,7 @@ import {
 import isMacOs from "../utils/is-mac-os";
 import baseReducer from "./base-reducer";
 
-type PivotReducerState<TITem> = SelectionApiState<TITem> & {
+export type PivotReducerState<TITem> = SelectionApiState<TITem> & {
   pivotKey?: string | number;
 };
 

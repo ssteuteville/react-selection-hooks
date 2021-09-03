@@ -41,7 +41,10 @@ export type UseSelectionApiReducer<TItem> = (
   action: UseSelectionApiReducerActions<TItem>
 ) => SelectionApiState<TItem>;
 
-export interface UseSelectionApi<TItem> {
+export interface UseSelectionApi<
+  TItem,
+  TState extends SelectionApiState<TItem>
+> {
   onSelect: (item: TItem, event?: MouseEvent) => void;
   selectionCount: number;
   clearSelection: () => void;
@@ -50,6 +53,7 @@ export interface UseSelectionApi<TItem> {
   isSelected: (item: TItem) => boolean;
   toggleSelection: (item: TItem) => void;
   selectedItems: TItem[];
+  state: TState;
 }
 
 export interface UseSelectionOptions<TItem> {

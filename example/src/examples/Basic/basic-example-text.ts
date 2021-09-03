@@ -1,4 +1,4 @@
-export default `
+const example = `
 import React from 'react';
 import useSelection from "react-selection-hooks";
 import List from '@material-ui/core/List';
@@ -57,3 +57,4 @@ const BasicExample = () => {
 
 export default BasicExample;
 `
+export default example;

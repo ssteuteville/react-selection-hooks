@@ -9462,10 +9462,10 @@ react-scripts@4.0.3:
   optionalDependencies:
     fsevents "^2.1.3"
 
-react-selection-hooks@0.1.0-alpha.2:
-  version "0.1.0-alpha.2"
-  resolved "https://registry.yarnpkg.com/react-selection-hooks/-/react-selection-hooks-0.1.0-alpha.2.tgz#83aefef5a49bd34b46b1c56a8a910cfa44e76487"
-  integrity sha512-ZuPa/UQH+yinOhax+lhB3m8Pm7OsB62uiAC5NP1wYLqDO8m2JJPjKgkW9RlED24Mmt47bJG4uduPFd/wMS/9Eg==
+react-selection-hooks@0.1.0-alpha.3:
+  version "0.1.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/react-selection-hooks/-/react-selection-hooks-0.1.0-alpha.3.tgz#f47801e101a13c84edc4ded8586d373594e7b219"
+  integrity sha512-j/WjAIE8TaQ4X0AY2p15B3YSsbasLGgiSArHIA4xEKRCsu5hJjRXb7FCONBvMDScYeTdfTkd6l6tgSQLHAtbCA==
 
 react-syntax-highlighter@^15.4.4:
   version "15.4.4"

@@ -27,7 +27,7 @@ const BasicExample = () => {
     return (
     <Container>
         <Typography variant="h2">
-          react-selection-hooks
+          Basic Example
         </Typography>
         <Typography variant="body1">
           Regular click to selection a single item

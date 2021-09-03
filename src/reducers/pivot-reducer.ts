@@ -49,6 +49,18 @@ const pivotReducer = <TItem>(
       }
       return state;
     }
+    case UseSelectionDefaultActions.clear: {
+      return {
+        ...baseReducer(state, action),
+        pivotKey: undefined,
+      };
+    }
+    case UseSelectionDefaultActions.append: {
+      return {
+        ...baseReducer(state, action),
+        pivotKey: action.getKey(action.item),
+      };
+    }
     default: {
       return baseReducer(state, action);
     }

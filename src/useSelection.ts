@@ -1,11 +1,12 @@
 import { useCallback, useMemo, MouseEvent, useReducer } from "react";
-import pivotReducer, { PivotReducerState } from "./reducers/pivot-reducer";
+import pivotReducer from "./reducers/pivot-reducer";
 import {
   UseSelectionApi,
   SelectionState,
   UseSelectionOptions,
   UseSelectionDefaultActions,
   SelectionApiState,
+  PivotReducerState,
 } from "./types";
 
 const useSelection = <

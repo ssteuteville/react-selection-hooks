@@ -66,3 +66,7 @@ export interface SelectionEvent<TItem> {
   mouseEvent?: MouseEvent;
   item: TItem;
 }
+
+export type PivotReducerState<TITem> = SelectionApiState<TITem> & {
+  pivotKey?: string | number;
+};

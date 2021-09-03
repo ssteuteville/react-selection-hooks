@@ -1,14 +1,10 @@
 import {
-  SelectionApiState,
+  PivotReducerState,
   UseSelectionApiReducerActions,
   UseSelectionDefaultActions,
 } from "../types";
 import isMacOs from "../utils/is-mac-os";
 import baseReducer from "./base-reducer";
-
-export type PivotReducerState<TITem> = SelectionApiState<TITem> & {
-  pivotKey?: string | number;
-};
 
 const pivotReducer = <TItem>(
   state: PivotReducerState<TItem>,

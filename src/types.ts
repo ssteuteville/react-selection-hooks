@@ -25,6 +25,7 @@ export enum UseSelectionDefaultActions {
   append = "append-selection",
   remove = "remove-selection",
   toggle = "toggle-Selection",
+  all = "all-selection",
 }
 
 export type UseSelectionApiReducerActions<TItem> =
@@ -32,6 +33,7 @@ export type UseSelectionApiReducerActions<TItem> =
       mouseEvent: MouseEvent;
     })
   | { type: UseSelectionDefaultActions.clear }
+  | { type: UseSelectionDefaultActions.all; items: TItem[] }
   | ReducerAction<TItem, UseSelectionDefaultActions.append>
   | ReducerAction<TItem, UseSelectionDefaultActions.remove>
   | ReducerAction<TItem, UseSelectionDefaultActions.toggle>;
@@ -52,6 +54,7 @@ export interface UseSelectionApi<
   removeFromSelection: (item: TItem) => void;
   isSelected: (item: TItem) => boolean;
   toggleSelection: (item: TItem) => void;
+  selectAll: () => void;
   selectedItems: TItem[];
   state: TState;
 }

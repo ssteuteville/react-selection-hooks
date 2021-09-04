@@ -1,7 +1,8 @@
 import { UseSelectionDefaultActions } from "..";
 import { createTestAction, TestItem } from "../utils/test-utils";
-import pivotReducer from "./pivot-reducer";
+import baseReducer from "./base-reducer";
 import { toggleTests } from "./base-reducer.test";
+import pivotReducer from "./pivot-reducer";
 
 const mockIsMacOS = jest.fn((): boolean => true);
 
@@ -58,6 +59,20 @@ describe("pivot reducer", () => {
       });
     });
   };
+
+  it("all", () => {
+    const state = {
+      selectedItems: [],
+    };
+    const action = createTestAction({
+      type: UseSelectionDefaultActions.all,
+      items: [{ key: 1 }, { key: 2 }],
+    });
+
+    expect(baseReducer(state, action)).toEqual({
+      selectedItems: [{ key: 1 }, { key: 2 }],
+    });
+  });
 
   describe.each([
     ["no mouse event", undefined],

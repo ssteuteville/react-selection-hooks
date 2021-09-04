@@ -37,6 +37,13 @@ const useSelection = <
     [getKey, selection]
   );
 
+  const selectAll = useCallback(() => {
+    dispatch({
+      type: UseSelectionDefaultActions.all,
+      items,
+    });
+  }, [items]);
+
   const appendToSelection = useCallback(
     (item: TItem) => {
       dispatch({
@@ -101,6 +108,7 @@ const useSelection = <
       toggleSelection,
       isSelected,
       onSelect: onSelectionEvent,
+      selectAll,
       selectedItems,
       selectionCount: selectedItems.length,
       clearSelection,
@@ -111,6 +119,7 @@ const useSelection = <
       isSelected,
       selectedItems,
       appendToSelection,
+      selectAll,
       removeFromSelection,
       toggleSelection,
       onSelectionEvent,

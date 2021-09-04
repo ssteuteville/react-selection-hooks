@@ -5,7 +5,8 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Container, Typography, Paper, Box, ListSubheader, makeStyles, ListItemSecondaryAction, Button } from '@material-ui/core';
-
+import { useSnackbar } from 'notistack';
+import { useEffect } from 'react';
 const useStyles = makeStyles((theme) => ({
   pivot: {
     border: \`1px solid \${theme.palette.primary.main}\`
@@ -15,11 +16,6 @@ const useStyles = makeStyles((theme) => ({
   },
   selectionCount: {
     marginLeft: theme.spacing(2),
-    color: theme.palette.primary.main
-  },
-  selectedCountEnforced: {
-    marginLeft: theme.spacing(2),
-    color: theme.palette.secondary.main
   }
 }))
 
@@ -52,15 +48,25 @@ type ReducerState = PivotReducerState<Item> & { didEnforceLimit: boolean }
 
 const AdvancedExample = () => {
     const classes = useStyles();
-    const { removeFromSelection, clearSelection, selectionCount, onSelect, isSelected, state: { pivotKey, didEnforceLimit } } = useSelection<Item, ReducerState>(items, {
+    const { selectAll, removeFromSelection, clearSelection, selectionCount, onSelect, isSelected, state: { pivotKey, didEnforceLimit } } = useSelection<Item, ReducerState>(items, {
       getKey,
       reducer: maxItemsReducer
     });
+    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
+    useEffect(() => {
+      if (didEnforceLimit) {
+        enqueueSnackbar('You can\\'t select more than 5!', {
+          variant: 'error',
+          key: 'max-selection-error',
+        })
+      }
+
+      return () => closeSnackbar('max-selection-error');
+    }, [didEnforceLimit, enqueueSnackbar, closeSnackbar]);
+  
     return (
     <Container>
-        <Typography variant="h2">
-          Advanced Example
-        </Typography>
         <Typography variant="body1">
           Regular click to select a single item
         </Typography>
@@ -78,11 +84,14 @@ const AdvancedExample = () => {
                   <Typography component="span">
                     Select some items!
                   </Typography>
-                  <Typography variant="body2" component="span" className={didEnforceLimit ? classes.selectedCountEnforced : classes.selectionCount}>
+                  <Typography variant="body2" component="span" className={classes.selectionCount}>
                     ({selectionCount}/{MAX_ITEMS} selected)
                   </Typography>
                 </ListItemText>
                 <ListItemSecondaryAction>
+                <Button variant="outlined" size="small" onClick={() => selectAll()}>
+                    All
+                  </Button>
                   <Button variant="outlined" size="small" onClick={() => clearSelection()}>
                     Clear
                   </Button>

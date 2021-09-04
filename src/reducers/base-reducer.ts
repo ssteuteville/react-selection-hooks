@@ -66,6 +66,12 @@ const baseReducer = <TItem, TState extends SelectionApiState<TItem>>(
         selectedItems: [],
       };
     }
+    case UseSelectionDefaultActions.all: {
+      return {
+        ...state,
+        selectedItems: action.items,
+      };
+    }
     default:
       return state;
   }

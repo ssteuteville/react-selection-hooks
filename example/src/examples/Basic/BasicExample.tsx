@@ -3,12 +3,18 @@ import useSelection, { PivotReducerState } from "react-selection-hooks";
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import { Container, Typography, Paper, Box, ListSubheader, makeStyles } from '@material-ui/core';
+import { Container, Typography, Paper, Box, ListSubheader, makeStyles, Button, ListItemSecondaryAction } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   pivot: {
     border: `1px solid ${theme.palette.primary.main}`
-  }
+  },
+  subheader: {
+    paddingTop: theme.spacing(2)
+  },
+  selectionCount: {
+    marginLeft: theme.spacing(2),
+  },
 }))
 
 interface Item {
@@ -20,7 +26,7 @@ const getKey = (item: Item) => item.key;
 const items: Item[] = Array.from({ length: 20 }).map((_, i) => ({ key: `Item${i}` }));
 const BasicExample = () => {
     const classes = useStyles();
-    const { onSelect, isSelected, state } = useSelection<Item, PivotReducerState<Item>>(items, {
+    const { onSelect, isSelected, state, selectionCount, selectAll, clearSelection } = useSelection<Item, PivotReducerState<Item>>(items, {
       getKey
     });
     return (
@@ -37,8 +43,23 @@ const BasicExample = () => {
         <Paper variant="outlined">
           <Box paddingLeft={2} paddingRight={2}>
             <List disablePadding>
-              <ListSubheader>
-                Select some items!
+            <ListSubheader className={classes.subheader}>
+                <ListItemText>
+                  <Typography component="span">
+                    Select some items!
+                  </Typography>
+                  <Typography variant="body2" component="span" className={classes.selectionCount}>
+                    ({selectionCount} selected)
+                  </Typography>
+                </ListItemText>
+                <ListItemSecondaryAction>
+                <Button variant="outlined" size="small" onClick={() => selectAll()}>
+                    All
+                  </Button>
+                  <Button variant="outlined" size="small" onClick={() => clearSelection()}>
+                    Clear
+                  </Button>
+                </ListItemSecondaryAction>
               </ListSubheader>
             {
               items.map(i => (

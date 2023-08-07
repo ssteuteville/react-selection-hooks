@@ -13,7 +13,8 @@
     "dist/index.umd.js",
     "dist/types.d.ts",
     "dist/useSelection.d.ts",
-    "dist/reducers/index.d.ts"
+    "dist/reducers/index.d.ts",
+    "src"
   ],
   "scripts": {
     "build": "microbundle",

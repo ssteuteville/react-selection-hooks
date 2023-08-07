@@ -8,12 +8,7 @@
   "module": "dist/index.module.js",
   "unpkg": "dist/index.umd.js",
   "files": [
-    "dist/index.d.ts",
-    "dist/index.module.js",
-    "dist/index.umd.js",
-    "dist/types.d.ts",
-    "dist/useSelection.d.ts",
-    "dist/reducers/index.d.ts",
+    "dist",
     "src"
   ],
   "scripts": {
